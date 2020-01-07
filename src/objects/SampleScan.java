@@ -46,7 +46,8 @@ public class SampleScan {
 	public ArrayList<String> toStrings() {
 	    SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		ArrayList<String> row = new ArrayList<>();
-		row.add(""+fmt.format(time.getTime())); row.add(id); 
+		row.add(fmt.format(time.getTime())); 
+		row.add(id); 
 		row.add(""+ec.getLatitude()); 
 		row.add(""+ec.getLongitude());
 		row.add(""+ec.getAltitude());

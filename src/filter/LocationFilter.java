@@ -32,7 +32,6 @@ public class LocationFilter extends Filter {
 			System.out.println(sc.getLocation().distanceTo(ec));
 
 		}
-
 		return tmp;
 	}
 
