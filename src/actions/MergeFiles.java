@@ -38,7 +38,7 @@ public class MergeFiles {
 		for(String[][] mat : arrMat){
 			ArrayList<ArrayList<String>> tmp;
 			tmp = ToArrayList(mat);
-			tmp = cleanMatrix(tmp);
+			cleanMatrix(tmp);
 			forEachTime10(tmp);
 			device_ids.remove(0);
 		}
@@ -63,7 +63,7 @@ public class MergeFiles {
 	}
 
 	
-	private ArrayList<ArrayList<String>> cleanMatrix(ArrayList<ArrayList<String>> tmp) {
+	private void cleanMatrix(ArrayList<ArrayList<String>> tmp) {
        	device_ids.add(tmp.get(0).get(5).substring(8));
        	tmp.remove(0);
         for(int i = 1; i<tmp.size(); i++){
@@ -72,7 +72,6 @@ public class MergeFiles {
         		i--;
         	}
         }
-        return tmp;
 	}
 	
 	
@@ -96,9 +95,9 @@ public class MergeFiles {
 				count++;
 				k++;
 			}
+			
 			gc = new GregorianCalendar();
 		    gc.setTime(fmt.parse(time));
-
 			sc = new SampleScan(gc, device_ids.get(0), 
 					new EarthCoordinate(Double.parseDouble(tmp.get(n).get(7)), 
 							Double.parseDouble(tmp.get(n).get(6)), 

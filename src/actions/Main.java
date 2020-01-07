@@ -22,14 +22,12 @@ public class Main {
 
 	private static final String FOLDER_PATH = "C:/Users/OREL SHALOM/Downloads";
 	private static final String COMBO_PATH = "C:/Users/OREL SHALOM/Downloads/sample.csv";
-	private static final String FILTER_PATH = "C:/Users/OREL SHALOM/Downloads/map.kml";
 
 	public static void main(String[] args) throws ParseException {
 		ReadFolder rfo = new ReadFolder(FOLDER_PATH);
 		rfo.read();
 		MergeFiles mer = new MergeFiles(rfo.getCsv_files());
-		ArrayList<SampleScan> scs;
-		scs = mer.comboMat();
+		ArrayList<SampleScan> scs = mer.comboMat();
 		WriteFile wf = new WriteFile(COMBO_PATH, scs);
 		wf.write();
 //		Filter f1 = new IDFilter("PKQ1.1302.001");
@@ -43,8 +41,10 @@ public class Main {
 //		gc2.setTime(fmt.parse("2019-12-08 08:30:09"));
 //		Filter f3 = new TimeFilter(gc1, gc2);
 //		scs = f3.filter(scs);
-		WriteKml wk = new WriteKml(scs, "map");
-		wk.write();
+		FirstAlgo fa = new FirstAlgo();
+		fa.algo1("e0:ce:c3:8c:aa:1e", scs);
+//		WriteKml wk = new WriteKml(scs, "map");
+//		wk.write();
 		
 		
 	}
