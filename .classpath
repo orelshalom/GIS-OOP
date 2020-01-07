@@ -2,5 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/OREL SHALOM/eclipse/java-neon2/eclipse/plugins/commons-csv-1.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/OREL SHALOM/eclipse/java-neon2/eclipse/plugins/org.boehn.kmlframework_20090718.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
