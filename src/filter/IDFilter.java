@@ -22,6 +22,7 @@ public class IDFilter extends Filter {
 		if (scs.size() == 0) throw new IndexOutOfBoundsException("File is empty.");
 		ArrayList<SampleScan> tmp = removeDupMac(scs);
 		tmp.removeIf(sc -> !sc.getId().equals(id));
+		for(SampleScan sc : tmp) System.out.println(sc.toStrings());
 		return tmp;
 	}
 
