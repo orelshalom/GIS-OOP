@@ -26,7 +26,7 @@ public class FirstAlgo {
 	 */
 	public FirstAlgo(ArrayList<SampleScan> scs) {
 		super();
-		this.scs = (ArrayList<SampleScan>) scs.clone();
+		this.scs = scs;
 		toMacsMap();
 	}
 
@@ -57,8 +57,7 @@ public class FirstAlgo {
 			macs.put(entry.getKey(), mi);
 			
 			wfs = new ArrayList<>();
-			Wifi wf = new Wifi(mi.get(0).getWifi().getId(), mi.get(0).getWifi().getMac(),
-					mi.get(0).getWifi().getFrequency(), mi.get(0).getWifi().getSignal());
+			Wifi wf = new Wifi(mi.get(0).getWifi());
 			wfs.add(wf);
 			algoMat.add(new SampleScan(mi.get(0).getTime(), "", algo1(entry.getKey()), wfs));
 		}

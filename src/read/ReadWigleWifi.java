@@ -13,10 +13,16 @@ import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
 public class ReadWigleWifi extends ReadFile {
+	
+	private static final int HEADER_SIZE = 8;
+	private static final int INNER_HEADER_SIZE = 11;
+	private static final String[] WigleWifiHeader = {"WigleWifi-","appRelease=", "model=",
+			"release=",	"device=", "display=", "board=", "brand="};
+	private static final String[] WigleWifiHeader2 = {"MAC","SSID", "AuthMode", "FirstSeen",
+			"Channel", "RSSI", "CurrentLatitude", "CurrentLongitude",
+			"AltitudeMeters", "AccuracyMeters", "Type"};
+											
 
-	private String[][] matrix;
-	
-	
 	public ReadWigleWifi(String path) {
 		super(path);
 	}
@@ -31,18 +37,20 @@ public class ReadWigleWifi extends ReadFile {
 	        List<CSVRecord> records = parser.getRecords();
 	    	String[][] tmp = new String[records.size()][11];
 	    	int i = 0, j = 0;
-	        for(CSVRecord re : records) {
-	           	if(!re.get(0).contains("WigleWifi") && i==0) return;
-	        	Iterator<String> iterator = re.iterator();
-	        	j=0;
-	            while (iterator.hasNext()) {
-	            	String column = iterator.next();
-	            	tmp[i][j] = column;
-	            	j++;
-	            }
-	            i++;
-	        }
-	        matrix = tmp;
+	    	
+	    	if(goodFormat(records)){
+		        for(CSVRecord re : records) {
+		        	Iterator<String> iterator = re.iterator();
+		        	j=0;
+		            while (iterator.hasNext()) {
+		            	String column = iterator.next();
+		            	tmp[i][j] = column;
+		            	j++;
+		            }
+		            i++;
+		        }
+		        matrix = tmp;
+	    	}
 	        parser.close();
 	        reader.close();
 	        
@@ -50,14 +58,23 @@ public class ReadWigleWifi extends ReadFile {
 			e.printStackTrace();
 		}
     }
-	
-	
-	public String[][] getMatrix() {
-		return matrix;
-	}
 
-	public void setMatrix(String[][] matrix) {
-		this.matrix = matrix;
+
+	@Override
+	protected boolean goodFormat(List<CSVRecord> records) {
+		if(records.get(0).size() != HEADER_SIZE) return false;
+		if(records.get(1).size() != INNER_HEADER_SIZE) return false;
+		int i = 0;
+		for(String s : records.get(0)){
+	    	if(!s.contains(WigleWifiHeader[i])) return false;
+	    	i++;
+	    }
+		i = 0;
+		for(String s : records.get(1)){
+	    	if(!s.equals(WigleWifiHeader2[i])) return false;
+	    	i++;
+	    }
+		return true;
 	}
 	
 }

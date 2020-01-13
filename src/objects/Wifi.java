@@ -15,6 +15,14 @@ public class Wifi {
 	}
 
 
+	public Wifi(Wifi wifi) {
+		this.mac = wifi.getMac();
+		this.id = wifi.getId();
+		this.signal = wifi.getSignal();
+		this.frequency = wifi.getFrequency();
+	}
+
+
 	private void emptyName() {
 		if(this.id.equals("")) id = "No name";
 	}

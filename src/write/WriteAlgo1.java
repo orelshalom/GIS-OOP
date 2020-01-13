@@ -16,13 +16,13 @@ import objects.SampleScan;
 import sort.SortByMac;
 
 
-public class WriteAlgo extends WriteFile {
+public class WriteAlgo1 extends WriteFile {
 
 	private static final String[] algoHeader = {"Index", "Mac", "SSID", "Frequency", 
 			"Signal", "Lat","Lon", "Alt", "Time"};
 	
 	
-	public WriteAlgo(String name, String path, ArrayList<SampleScan> mat) {
+	public WriteAlgo1(String name, String path, ArrayList<SampleScan> mat) {
 		super(name + ".csv", path + "/", mat);
 	}
 	

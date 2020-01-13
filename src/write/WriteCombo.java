@@ -43,7 +43,7 @@ public class WriteCombo extends WriteFile {
 	public void write() {
         try {
     		BufferedWriter writer = Files.newBufferedWriter(Paths.get(getFolderPath()+ file_name), Charset.defaultCharset());
-			CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader(newHeader));
+			CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader(getNewheader()));
 			
 			Collections.sort(getMat(), new SortByTime());
 			for(SampleScan sc : getMat()){
@@ -57,5 +57,10 @@ public class WriteCombo extends WriteFile {
 			e.printStackTrace();
 		}
 		
+	}
+
+
+	public static String[] getNewheader() {
+		return newHeader;
 	}
 }
