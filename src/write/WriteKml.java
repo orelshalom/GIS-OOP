@@ -10,23 +10,16 @@ import org.boehn.kmlframework.kml.Kml;
 import org.boehn.kmlframework.kml.KmlException;
 
 import actions.KmlHelper;
-import objects.SampleScanCombo;
+import objects.SampleScan;
 
-public class WriteKml implements Write {
-	
-	private ArrayList<SampleScanCombo> scs;
-	private final String DOWNLOAD_PATH = "C:/Users/OREL SHALOM/Downloads/";
-	private String name;
-	
-	
+public class WriteKml extends WriteFile {
+		
 	/**
 	 * @param scs
 	 * @param name
 	 */
-	public WriteKml(ArrayList<SampleScanCombo> scs, String name) {
-		super();
-		this.scs = scs;
-		this.name = name + ".kml";
+	public WriteKml(String name, String path, ArrayList<SampleScan> scs) {
+		super(name + ".kml", path, scs);
 	}
 
 	
@@ -40,12 +33,12 @@ public class WriteKml implements Write {
 		kh.addIcon("red", doc);
         kh.addIcon("ylw", doc);
         kh.addIcon("grn", doc);
-		for(SampleScanCombo sc : scs){
+		for(SampleScan sc : getMat()){
 			kh.addPlacemark(sc, doc);
 		}
 		
 		try {
-			PrintWriter pw = new PrintWriter(new File(DOWNLOAD_PATH ,name));
+			PrintWriter pw = new PrintWriter(new File(getFolderPath() ,file_name));
 			kml.createKml(pw);
 		} catch (KmlException | IOException e) {
 			e.printStackTrace();

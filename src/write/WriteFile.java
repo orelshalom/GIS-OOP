@@ -1,68 +1,57 @@
 package write;
 
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Collections;
+import objects.SampleScan;
 
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVPrinter;
+public abstract class WriteFile {
 
-import objects.SampleScanCombo;
-import sort.SortByTime;
-
-public class WriteFile implements Write{
-
-	private String file_path;
-	private ArrayList<SampleScanCombo> comboMat;
-	private static final String[] newHeader = {"Time", "ID", "Lat", "Lon", "Alt", "#WiFi networks (up to 10)",
-			"SSID1", "MAC1", "Frequncy1", "Signal1",
-			"SSID2", "MAC2", "Frequncy2", "Signal2",
-			"SSID3", "MAC3", "Frequncy3", "Signal3",
-			"SSID4", "MAC4", "Frequncy4", "Signal4",
-			"SSID5", "MAC5", "Frequncy5", "Signal5",
-			"SSID6", "MAC6", "Frequncy6", "Signal6",
-			"SSID7", "MAC7", "Frequncy7", "Signal7",
-			"SSID8", "MAC8", "Frequncy8", "Signal8",
-			"SSID9", "MAC9", "Frequncy9", "Signal9",
-			"SSID10", "MAC10", "Frequncy10", "Signal10"};
-	
+	protected String file_name;
+	private String folder_path;
+	private ArrayList<SampleScan> mat;
 	
 	
 	/**
 	 * @param file_path
 	 * @param mat 
 	 */
-	public WriteFile(String file_path, ArrayList<SampleScanCombo> mat) {
+	public WriteFile(String name, String path, ArrayList<SampleScan> mat) {
 		super();
-		this.file_path = file_path;
-		this.comboMat = mat;
+		this.file_name = name;
+		this.folder_path = path;
+		this.mat = mat;
+	}
+
+	public abstract void write();
+	
+	
+	public String getFolderPath() {
+		return folder_path;
+	}
+
+	
+	public void setFolderPath(String file_path) {
+		this.folder_path = file_path;
+	}
+
+	
+	public ArrayList<SampleScan> getMat() {
+		return mat;
+	}
+
+	
+	public void setMat(ArrayList<SampleScan> mat) {
+		this.mat = mat;
 	}
 
 
-
-	@Override
-	public void write() {
-        try {
-    		BufferedWriter writer = Files.newBufferedWriter(Paths.get(file_path), Charset.defaultCharset());
-			CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader(newHeader));
-			
-			Collections.sort(comboMat, new SortByTime());
-			for(SampleScanCombo scc : comboMat){
-				csvPrinter.printRecord(scc.toStrings());
-			}
-			
-            csvPrinter.flush();  
-            writer.close();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
+	public String getFileName() {
+		return file_name;
 	}
 
+
+	public void setFileName(String file_name) {
+		this.file_name = file_name;
+	}
+	
 }
 

@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import objects.SampleScanCombo;
+import objects.SampleScan;
 import objects.Wifi;
 
 public abstract class Filter {
 
-	public abstract ArrayList<SampleScanCombo> filter(ArrayList<SampleScanCombo> scs);
+	public abstract ArrayList<SampleScan> filter(ArrayList<SampleScan> scs);
 	
-	public ArrayList<SampleScanCombo> removeDupMac(ArrayList<SampleScanCombo> scs){
+	public ArrayList<SampleScan> removeDupMac(ArrayList<SampleScan> scs){
 		Map<String, Wifi> map = new HashMap<>();
 		scs.forEach(sc -> 
 			sc.getWifiArray().forEach(wifi -> {
@@ -22,7 +22,7 @@ public abstract class Filter {
 				else map.put(wifi.getMac(), wifi);
 		}));
 		
-		ArrayList<SampleScanCombo> tmp =  (ArrayList<SampleScanCombo>) scs.clone();
+		ArrayList<SampleScan> tmp =  (ArrayList<SampleScan>) scs.clone();
 		tmp.forEach(sc -> sc.getWifiArray()
 				.removeIf(wifi -> !wifi.equals(map.get(wifi.getMac()))));
 		return tmp;

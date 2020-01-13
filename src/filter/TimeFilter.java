@@ -2,8 +2,7 @@ package filter;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
-
-import objects.SampleScanCombo;
+import objects.SampleScan;
 
 
 public class TimeFilter extends Filter {
@@ -24,11 +23,11 @@ public class TimeFilter extends Filter {
 
 
 	@Override
-	public ArrayList<SampleScanCombo> filter(ArrayList<SampleScanCombo> scs) {
+	public ArrayList<SampleScan> filter(ArrayList<SampleScan> scs) {
 		if (scs.size() == 0) throw new IndexOutOfBoundsException("File is empty.");
-		ArrayList<SampleScanCombo> tmp = removeDupMac(scs);
+		ArrayList<SampleScan> tmp = removeDupMac(scs);
 		tmp.removeIf(sc -> sc.getTime().after(endingTime) || sc.getTime().before(beginningTime));
-		for(SampleScanCombo sc : tmp) System.out.println(sc.toStrings());
+		for(SampleScan sc : tmp) System.out.println(sc.toStringCombo());
 		return scs;
 	}
 

@@ -18,24 +18,24 @@ import filter.IDFilter;
 import filter.LocationFilter;
 import filter.TimeFilter;
 import objects.MacInfo;
-import objects.SampleScanAlgo;
-import objects.SampleScanCombo;
+import objects.SampleScan;
 import objects.Wifi;
 import read.ReadFolder;
+import write.WriteAlgo;
+import write.WriteCombo;
 import write.WriteFile;
 import write.WriteKml;
 
 public class Main {
 
 	private static final String FOLDER_PATH = "C:/Users/OREL SHALOM/Downloads";
-	private static final String COMBO_PATH = "C:/Users/OREL SHALOM/Downloads/sample.csv";
 
 	public static void main(String[] args) throws ParseException {
 		ReadFolder rfo = new ReadFolder(FOLDER_PATH);
 		rfo.read();
 		MergeFiles mer = new MergeFiles(rfo.getCsv_files());
-		ArrayList<SampleScanCombo> scs = mer.comboMat();
-		WriteFile wf = new WriteFile(COMBO_PATH, scs);
+		ArrayList<SampleScan> scs = mer.comboMat();
+		WriteFile wf = new WriteCombo("combo", FOLDER_PATH, scs);
 		wf.write();
 		
 //		Filter f1 = new IDFilter("PKQ1.1302.001");
@@ -49,19 +49,15 @@ public class Main {
 //		gc2.setTime(fmt.parse("2019-12-08 08:30:09"));
 //		Filter f3 = new TimeFilter(gc1, gc2);
 //		scs = f3.filter(scs);
-//		WriteKml wk = new WriteKml(scs, "map");
+//		WriteKml wk = new WriteKml("map", FOLDER_PATH, scs);
 //		wk.write();
 		
 //		FirstAlgo fa = new FirstAlgo(scs);
-//		for(Entry<String, ArrayList<MacInfo>> entry : fa.getMacs().entrySet()){
-//			System.out.println(entry.getKey()+ " " +fa.algo1(entry.getKey()));
-//		}
-		SecondAlgo sa = new SecondAlgo(scs);
-		for(SampleScanCombo sc : scs)
-			System.out.println(sa.algo2(sc, sa.getMap()));
-//		System.out.println(sa.algo2(scs.get(0), sa.getMap()));
-		
-		
+//		WriteAlgo wa = new WriteAlgo("Algo1", FOLDER_PATH, fa.toAlgo1Mat());
+//		wa.write();
+//		SecondAlgo sa = new SecondAlgo(scs);
+//		WriteCombo wa2 = new WriteCombo("Algo2", FOLDER_PATH, sa.toAlgo2Mat());
+//		wa2.write();
 
 		
 		

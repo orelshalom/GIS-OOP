@@ -1,13 +1,12 @@
 package sort;
 
 import java.util.Comparator;
+import objects.SampleScan;
 
-import objects.SampleScanCombo;
 
-
-public class SortByTime implements Comparator<SampleScanCombo> { 
+public class SortByTime implements Comparator<SampleScan> { 
 	
-	    public int compare(SampleScanCombo a, SampleScanCombo b) { 
+	    public int compare(SampleScan a, SampleScan b) { 
 	        return a.getTime().compareTo(b.getTime()); 
 	    } 
 	}

@@ -8,14 +8,14 @@ import java.util.GregorianCalendar;
 
 import org.boehn.kmlframework.coordinates.EarthCoordinate;
 
-import objects.SampleScanCombo;
+import objects.SampleScan;
 import objects.Wifi;
 import sort.SortBySignal;
 
 public class MergeFiles {
 
 	private ArrayList<String[][]> arrMat;
-	private ArrayList<SampleScanCombo> matrix;
+	private ArrayList<SampleScan> matrix;
 	private ArrayList<String> device_ids;
 	private String time;
 	
@@ -30,7 +30,7 @@ public class MergeFiles {
 	}
 
 
-	public ArrayList<SampleScanCombo> comboMat() throws ParseException{
+	public ArrayList<SampleScan> comboMat() throws ParseException{
 //	    long start = System.currentTimeMillis();
 
 		for(String[][] mat : arrMat){
@@ -74,7 +74,7 @@ public class MergeFiles {
 	
 	
 	private void forEachTime10(ArrayList<ArrayList<String>> tmp) throws ParseException {
-		SampleScanCombo sc;
+		SampleScan sc;
 		ArrayList<Wifi> wifis;
 		GregorianCalendar gc;  
 	    SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -96,7 +96,7 @@ public class MergeFiles {
 			
 			gc = new GregorianCalendar();
 		    gc.setTime(fmt.parse(time));
-			sc = new SampleScanCombo(gc, device_ids.get(0), 
+			sc = new SampleScan(gc, device_ids.get(0), 
 					new EarthCoordinate(Double.parseDouble(tmp.get(n).get(7)), 
 							Double.parseDouble(tmp.get(n).get(6)), 
 							Double.parseDouble(tmp.get(n).get(8))), 
@@ -127,12 +127,12 @@ public class MergeFiles {
 	}
 	
 	
-	public ArrayList<SampleScanCombo> getMatrix() {
+	public ArrayList<SampleScan> getMatrix() {
 		return matrix;
 	}
 
 	
-	public void setMatrix(ArrayList<SampleScanCombo> matrix) {
+	public void setMatrix(ArrayList<SampleScan> matrix) {
 		this.matrix = matrix;
 	}
 

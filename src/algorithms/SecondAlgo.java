@@ -11,7 +11,7 @@ import org.boehn.kmlframework.coordinates.EarthCoordinate;
 
 import objects.DataAlgo2;
 import objects.MacInfo;
-import objects.SampleScanCombo;
+import objects.SampleScan;
 import objects.Wifi;
 import sort.SortByPi;
 import sort.SortMacsBySignal;
@@ -28,26 +28,27 @@ public class SecondAlgo {
 	private static final int NUM_OF_WIFIS = 4;
 	private static final int CHOSEN_SAMPLES = 4;
 
-	private static Map<String, ArrayList<SampleScanCombo>> map;
-	private static ArrayList<SampleScanCombo> scs;
+	private Map<String, ArrayList<SampleScan>> map;
+	private ArrayList<SampleScan> algoMat;
+	private ArrayList<SampleScan> scs;
 	
 	
 	/**
 	 * @param scs
 	 */
-	public SecondAlgo(ArrayList<SampleScanCombo> scs) {
+	public SecondAlgo(ArrayList<SampleScan> scs) {
 		super();
 		this.scs = scs;
 		toSamplesMap();
 	}
 
 
-	private Map<String, ArrayList<SampleScanCombo>> toSamplesMap(){
+	private Map<String, ArrayList<SampleScan>> toSamplesMap(){
 		map = new HashMap<>(); 
-		for(SampleScanCombo sc : scs) {
+		for(SampleScan sc : scs) {
 			for(Wifi wf : sc.getWifiArray()){
 				if(!map.containsKey(wf.getMac())){
-					ArrayList<SampleScanCombo> arr = new ArrayList<>();
+					ArrayList<SampleScan> arr = new ArrayList<>();
 					arr.add(sc);
 					map.put(wf.getMac(), arr);
 				}
@@ -58,14 +59,22 @@ public class SecondAlgo {
 	}
 	
 	
-	public EarthCoordinate algo2(SampleScanCombo input, Map<String, ArrayList<SampleScanCombo>> map) {
-		Set<SampleScanCombo> dataset = new HashSet<>();
+	public ArrayList<SampleScan> toAlgo2Mat() {
+		algoMat = new ArrayList<>();
+		for(SampleScan sc : scs)
+			algoMat.add(new SampleScan(sc.getTime(), sc.getId(), algo2(sc, map), sc.getWifiArray()));
+		return algoMat;
+	}
+	
+	
+	public EarthCoordinate algo2(SampleScan input, Map<String, ArrayList<SampleScan>> map) {
+		Set<SampleScan> dataset = new HashSet<>();
 		for(Wifi wf : input.getStrongerWifisByNum(NUM_OF_WIFIS))
 			dataset.addAll(map.get(wf.getMac()));
 			
 		ArrayList<DataAlgo2> datalist = new ArrayList<>();
-		for(SampleScanCombo sc : dataset)
-			datalist.add(new DataAlgo2(new SampleScanCombo(sc), calculatePi(input, sc)));
+		for(SampleScan sc : dataset)
+			datalist.add(new DataAlgo2(new SampleScan(sc), calculatePi(input, sc)));
 		datalist = getSamples(datalist);
 		
 		double sumLon = 0.0, sumLat = 0.0, sumAlt = 0.0, sumWeight = 0.0;
@@ -79,7 +88,7 @@ public class SecondAlgo {
 		return new EarthCoordinate(sumLon/sumWeight, sumLat/sumWeight, sumAlt/sumWeight);
 	}
 	
-	private double calculatePi(SampleScanCombo input, SampleScanCombo data) {
+	private double calculatePi(SampleScan input, SampleScan data) {
 		double pi = 1.0;
 		for(Wifi wf : input.getStrongerWifisByNum(NUM_OF_WIFIS))
 			pi *= weight(wf, data.hasMac(wf.getMac()));
@@ -115,7 +124,7 @@ public class SecondAlgo {
 	}
 	
 	
-	public Map<String, ArrayList<SampleScanCombo>> getMap() {
+	public Map<String, ArrayList<SampleScan>> getMap() {
 		return map;
 	}
 

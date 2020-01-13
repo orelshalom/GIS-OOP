@@ -8,31 +8,32 @@ import java.util.Map.Entry;
 import org.boehn.kmlframework.coordinates.EarthCoordinate;
 
 import objects.MacInfo;
-import objects.SampleScanCombo;
+import objects.SampleScan;
 import objects.Wifi;
 import sort.SortMacsBySignal;
 
 public class FirstAlgo {
 
 	private static final int NUM_OF_WIFIS = 4;
+	private ArrayList<SampleScan> algoMat;
+	private ArrayList<SampleScan> scs;
 	private Map<String, ArrayList<MacInfo>> macs;
-	private ArrayList<SampleScanCombo> scs;
 	
 		
 	/**
 	 * @param macs
 	 * @param scs
 	 */
-	public FirstAlgo(ArrayList<SampleScanCombo> scs) {
+	public FirstAlgo(ArrayList<SampleScan> scs) {
 		super();
-		this.scs = scs;
+		this.scs = (ArrayList<SampleScan>) scs.clone();
 		toMacsMap();
 	}
 
 	
 	private Map<String, ArrayList<MacInfo>> toMacsMap(){
 		macs = new HashMap<>(); 
-		for(SampleScanCombo sc : scs) {
+		for(SampleScan sc : scs) {
 			for(Wifi wf : sc.getWifiArray()){
 				if(!macs.containsKey(wf.getMac())){
 					ArrayList<MacInfo> mis = new ArrayList<>();
@@ -42,9 +43,26 @@ public class FirstAlgo {
 				else macs.get(wf.getMac()).add(new MacInfo(sc.getTime(), sc.getId(), sc.getLocation(), wf));
 			}
 		}
-		for(Entry<String, ArrayList<MacInfo>> entry : macs.entrySet())
-			entry.getValue().sort(new SortMacsBySignal());
 		return macs;
+	}
+	
+	
+	public ArrayList<SampleScan> toAlgo1Mat() {
+		algoMat = new ArrayList<>();
+		ArrayList<Wifi> wfs;
+
+		for(Entry<String, ArrayList<MacInfo>> entry : getMacs().entrySet()){
+			ArrayList<MacInfo> mi = entry.getValue();
+			mi.sort(new SortMacsBySignal());
+			macs.put(entry.getKey(), mi);
+			
+			wfs = new ArrayList<>();
+			Wifi wf = new Wifi(mi.get(0).getWifi().getId(), mi.get(0).getWifi().getMac(),
+					mi.get(0).getWifi().getFrequency(), mi.get(0).getWifi().getSignal());
+			wfs.add(wf);
+			algoMat.add(new SampleScan(mi.get(0).getTime(), "", algo1(entry.getKey()), wfs));
+		}
+		return algoMat;
 	}
 	
 	
@@ -64,7 +82,6 @@ public class FirstAlgo {
 	
 	
 	private ArrayList<MacInfo> getSamples(ArrayList<MacInfo> mis) {
-		mis.sort(new SortMacsBySignal());
 		if(mis.size() > NUM_OF_WIFIS) mis.subList(NUM_OF_WIFIS, mis.size()).clear();
 		return mis;
 	}

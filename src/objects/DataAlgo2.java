@@ -3,7 +3,7 @@ package objects;
 
 public class DataAlgo2 {
 	
-	private SampleScanCombo sc;
+	private SampleScan sc;
 	private double pi;
 	
 	
@@ -11,18 +11,18 @@ public class DataAlgo2 {
 	 * @param sc
 	 * @param pi
 	 */
-	public DataAlgo2(SampleScanCombo sc, double pi) {
+	public DataAlgo2(SampleScan sc, double pi) {
 		super();
 		this.sc = sc;
 		this.pi = pi;
 	}
 	
 	
-	public SampleScanCombo getSc() {
+	public SampleScan getSc() {
 		return sc;
 	}
 	
-	public void setSc(SampleScanCombo sc) {
+	public void setSc(SampleScan sc) {
 		this.sc = sc;
 	}
 	

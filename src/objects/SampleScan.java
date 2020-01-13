@@ -2,16 +2,11 @@ package objects;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.GregorianCalendar;
-import java.util.List;
-
 import org.boehn.kmlframework.coordinates.EarthCoordinate;
-
 import sort.SortBySignal;
 
-public class SampleScanCombo {
+public class SampleScan {
 	
 	private GregorianCalendar time;
 	private String id;
@@ -25,7 +20,7 @@ public class SampleScanCombo {
 	 * @param pointLocation
 	 * @param arrayWifi
 	 */
-	public SampleScanCombo(GregorianCalendar time, String id, EarthCoordinate ec, ArrayList<Wifi> wifiArray) {
+	public SampleScan(GregorianCalendar time, String id, EarthCoordinate ec, ArrayList<Wifi> wifiArray) {
 		super();
 		this.time = time;
 		this.id = id;
@@ -34,7 +29,7 @@ public class SampleScanCombo {
 	}
 
 	
-	public SampleScanCombo(SampleScanCombo sc) {
+	public SampleScan(SampleScan sc) {
 		this.time = sc.time;
 		this.id = sc.id;
 		this.ec = sc.ec;
@@ -52,7 +47,7 @@ public class SampleScanCombo {
 	}
 
 	
-	public ArrayList<String> toStrings() {
+	public ArrayList<String> toStringCombo() {
 	    SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		ArrayList<String> row = new ArrayList<>();
 		row.add(fmt.format(time.getTime())); 
@@ -67,6 +62,21 @@ public class SampleScanCombo {
 			row.add(wf.getFrequency()+"");
 			row.add(wf.getSignal()+"");
 		}
+		return row;
+	}
+	
+	
+	public ArrayList<String> toStringAlgo() {
+	    SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		ArrayList<String> row = new ArrayList<>();
+		row.add(wifiArray.get(0).getMac());
+		row.add(wifiArray.get(0).getId());
+		row.add(wifiArray.get(0).getFrequency()+"");
+		row.add((int)wifiArray.get(0).getSignal()+"");
+		row.add(""+ec.getLatitude()); 
+		row.add(""+ec.getLongitude());
+		row.add(""+ec.getAltitude());
+		row.add(fmt.format(time.getTime())); 
 		return row;
 	}
 

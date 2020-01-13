@@ -1,10 +1,8 @@
 package filter;
 
 import java.util.ArrayList;
-
 import org.boehn.kmlframework.coordinates.EarthCoordinate;
-
-import objects.SampleScanCombo;
+import objects.SampleScan;
 
 
 public class LocationFilter extends Filter {
@@ -24,12 +22,12 @@ public class LocationFilter extends Filter {
 
 
 	@Override
-	public ArrayList<SampleScanCombo> filter(ArrayList<SampleScanCombo> scs) {
+	public ArrayList<SampleScan> filter(ArrayList<SampleScan> scs) {
 		if (scs.size() == 0) throw new IndexOutOfBoundsException("File is empty.");
-		ArrayList<SampleScanCombo> tmp = removeDupMac(scs);
+		ArrayList<SampleScan> tmp = removeDupMac(scs);
 		tmp.removeIf(sc -> sc.getLocation().distanceTo(ec) > radius);
-		for(SampleScanCombo sc : tmp){
-			System.out.println(sc.toStrings());
+		for(SampleScan sc : tmp){
+			System.out.println(sc.toStringCombo());
 			System.out.println(sc.getLocation().distanceTo(ec));
 		}
 		return tmp;

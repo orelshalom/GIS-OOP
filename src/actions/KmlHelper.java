@@ -12,13 +12,13 @@ import org.boehn.kmlframework.kml.SimpleData;
 import org.boehn.kmlframework.kml.Style;
 import org.boehn.kmlframework.kml.TimeStamp;
 
-import objects.SampleScanCombo;
+import objects.SampleScan;
 import objects.Wifi;
 
 public class KmlHelper {
 	
 	
-	public void addPlacemark(SampleScanCombo sc, Document doc) {
+	public void addPlacemark(SampleScan sc, Document doc) {
 		for(Wifi wf : sc.getWifiArray()){
 			Placemark pm = new Placemark(wf.getId());
 			TimeStamp ts = new TimeStamp(changeFormat(sc.getTime()));
@@ -53,7 +53,7 @@ public class KmlHelper {
 		return "#red";
 	}
 	
-	private ExtendedData wifiDetails(SampleScanCombo sc, Wifi wf) {
+	private ExtendedData wifiDetails(SampleScan sc, Wifi wf) {
 		ArrayList<SimpleData> details = new ArrayList<>();
 		details.add(new SimpleData("ID", sc.getId()));
 		details.add(new SimpleData("Mac", wf.getMac()));
