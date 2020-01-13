@@ -9,7 +9,7 @@ public class SortBySignal implements Comparator<Wifi> {
 	
 	@Override
     public int compare(Wifi a, Wifi b) { 
-        return Math.abs(a.getSignal()) - Math.abs(b.getSignal()); 
+        return Double.compare(Math.abs(a.getSignal()), Math.abs(b.getSignal())); 
     }
 
 }

@@ -3,21 +3,19 @@ package actions;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 import org.boehn.kmlframework.coordinates.EarthCoordinate;
 
-import objects.SampleScan;
+import objects.SampleScanCombo;
 import objects.Wifi;
 import sort.SortBySignal;
 
 public class MergeFiles {
 
 	private ArrayList<String[][]> arrMat;
-	private ArrayList<SampleScan> matrix;
+	private ArrayList<SampleScanCombo> matrix;
 	private ArrayList<String> device_ids;
 	private String time;
 	
@@ -32,7 +30,7 @@ public class MergeFiles {
 	}
 
 
-	public ArrayList<SampleScan> comboMat() throws ParseException{
+	public ArrayList<SampleScanCombo> comboMat() throws ParseException{
 //	    long start = System.currentTimeMillis();
 
 		for(String[][] mat : arrMat){
@@ -76,7 +74,7 @@ public class MergeFiles {
 	
 	
 	private void forEachTime10(ArrayList<ArrayList<String>> tmp) throws ParseException {
-		SampleScan sc;
+		SampleScanCombo sc;
 		ArrayList<Wifi> wifis;
 		GregorianCalendar gc;  
 	    SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -98,7 +96,7 @@ public class MergeFiles {
 			
 			gc = new GregorianCalendar();
 		    gc.setTime(fmt.parse(time));
-			sc = new SampleScan(gc, device_ids.get(0), 
+			sc = new SampleScanCombo(gc, device_ids.get(0), 
 					new EarthCoordinate(Double.parseDouble(tmp.get(n).get(7)), 
 							Double.parseDouble(tmp.get(n).get(6)), 
 							Double.parseDouble(tmp.get(n).get(8))), 
@@ -110,7 +108,7 @@ public class MergeFiles {
 
 	
 	private ArrayList<Wifi> getStrongerWifis(ArrayList<Wifi> wifis) {
-		Collections.sort(wifis, new SortBySignal());
+		wifis.sort(new SortBySignal());
 		if (wifis.size() > 10) {
 			ArrayList<Wifi> arrayStrongerWifi = new ArrayList<Wifi>();
 			for (int i = 0; i < 10; i++)  arrayStrongerWifi.add(wifis.get(i));
@@ -129,12 +127,12 @@ public class MergeFiles {
 	}
 	
 	
-	public ArrayList<SampleScan> getMatrix() {
+	public ArrayList<SampleScanCombo> getMatrix() {
 		return matrix;
 	}
 
 	
-	public void setMatrix(ArrayList<SampleScan> matrix) {
+	public void setMatrix(ArrayList<SampleScanCombo> matrix) {
 		this.matrix = matrix;
 	}
 

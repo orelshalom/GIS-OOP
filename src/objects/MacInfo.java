@@ -1,21 +1,49 @@
 package objects;
 
+import java.util.GregorianCalendar;
+
 import org.boehn.kmlframework.coordinates.EarthCoordinate;
 
 public class MacInfo {
 	
+	private GregorianCalendar time;
+	private String id;
 	private EarthCoordinate ec;
-	private double signal;
+	private Wifi wifi;
 	
 	
 	/**
+	 * @param time
+	 * @param id
 	 * @param ec
-	 * @param signal
+	 * @param wifi
 	 */
-	public MacInfo(EarthCoordinate ec, int signal) {
+	public MacInfo(GregorianCalendar time, String id, EarthCoordinate ec, Wifi wifi) {
 		super();
+		this.time = time;
+		this.id = id;
 		this.ec = ec;
-		this.signal = signal;
+		this.wifi = wifi;
+	}
+
+	
+	public GregorianCalendar getTime() {
+		return time;
+	}
+
+
+	public void setTime(GregorianCalendar time) {
+		this.time = time;
+	}
+
+
+	public String getId() {
+		return id;
+	}
+
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 
@@ -29,13 +57,13 @@ public class MacInfo {
 	}
 
 
-	public double getSignal() {
-		return signal;
+	public Wifi getWifi() {
+		return wifi;
 	}
 
 
-	public void setSignal(double signal) {
-		this.signal = signal;
+	public void setWifi(Wifi wifi) {
+		this.wifi = wifi;
 	}
 
 }

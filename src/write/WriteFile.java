@@ -7,18 +7,17 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 
-import objects.SampleScan;
+import objects.SampleScanCombo;
 import sort.SortByTime;
 
 public class WriteFile implements Write{
 
 	private String file_path;
-	private ArrayList<SampleScan> comboMat;
+	private ArrayList<SampleScanCombo> comboMat;
 	private static final String[] newHeader = {"Time", "ID", "Lat", "Lon", "Alt", "#WiFi networks (up to 10)",
 			"SSID1", "MAC1", "Frequncy1", "Signal1",
 			"SSID2", "MAC2", "Frequncy2", "Signal2",
@@ -37,7 +36,7 @@ public class WriteFile implements Write{
 	 * @param file_path
 	 * @param mat 
 	 */
-	public WriteFile(String file_path, ArrayList<SampleScan> mat) {
+	public WriteFile(String file_path, ArrayList<SampleScanCombo> mat) {
 		super();
 		this.file_path = file_path;
 		this.comboMat = mat;
@@ -52,8 +51,8 @@ public class WriteFile implements Write{
 			CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader(newHeader));
 			
 			Collections.sort(comboMat, new SortByTime());
-			for(SampleScan sc : comboMat){
-				csvPrinter.printRecord(sc.toStrings());
+			for(SampleScanCombo scc : comboMat){
+				csvPrinter.printRecord(scc.toStrings());
 			}
 			
             csvPrinter.flush();  

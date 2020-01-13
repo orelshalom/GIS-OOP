@@ -11,12 +11,12 @@ import org.boehn.kmlframework.coordinates.EarthCoordinate;
 
 import sort.SortBySignal;
 
-public class SampleScan {
+public class SampleScanCombo {
 	
 	private GregorianCalendar time;
 	private String id;
-	private EarthCoordinate ec;
-	private ArrayList<Wifi> wifiArray;
+	protected EarthCoordinate ec;
+	protected ArrayList<Wifi> wifiArray;
 	
 	
 	/**
@@ -25,7 +25,7 @@ public class SampleScan {
 	 * @param pointLocation
 	 * @param arrayWifi
 	 */
-	public SampleScan(GregorianCalendar time, String id, EarthCoordinate ec, ArrayList<Wifi> wifiArray) {
+	public SampleScanCombo(GregorianCalendar time, String id, EarthCoordinate ec, ArrayList<Wifi> wifiArray) {
 		super();
 		this.time = time;
 		this.id = id;
@@ -34,7 +34,16 @@ public class SampleScan {
 	}
 
 	
+	public SampleScanCombo(SampleScanCombo sc) {
+		this.time = sc.time;
+		this.id = sc.id;
+		this.ec = sc.ec;
+		this.wifiArray = sc.wifiArray;
+	}
+
+
 	public ArrayList<Wifi> getStrongerWifisByNum(int num) {
+		wifiArray.sort(new SortBySignal());
 		if (num > wifiNetworks()) return wifiArray;
 		ArrayList<Wifi> arr = new ArrayList<Wifi>();
 		for (int i = 0; i < num; i++) 
@@ -70,7 +79,7 @@ public class SampleScan {
 		return null;
 	}
 
-	
+		
 	public int wifiNetworks() {
 		return wifiArray.size();
 	}

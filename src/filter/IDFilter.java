@@ -2,7 +2,8 @@ package filter;
 
 import java.util.ArrayList;
 
-import objects.SampleScan;
+import objects.SampleScanCombo;
+
 
 public class IDFilter extends Filter {
 
@@ -18,11 +19,11 @@ public class IDFilter extends Filter {
 
 
 	@Override
-	public ArrayList<SampleScan> filter(ArrayList<SampleScan> scs) {
+	public ArrayList<SampleScanCombo> filter(ArrayList<SampleScanCombo> scs) {
 		if (scs.size() == 0) throw new IndexOutOfBoundsException("File is empty.");
-		ArrayList<SampleScan> tmp = removeDupMac(scs);
+		ArrayList<SampleScanCombo> tmp = removeDupMac(scs);
 		tmp.removeIf(sc -> !sc.getId().equals(id));
-		for(SampleScan sc : tmp) System.out.println(sc.toStrings());
+		for(SampleScanCombo sc : tmp) System.out.println(sc.toStrings());
 		return tmp;
 	}
 

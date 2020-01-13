@@ -24,9 +24,9 @@ public class ReadFolder implements Read {
 		File[] contents = directory.listFiles();
 		for ( File f : contents) {
 			if (f.getName().endsWith(".csv")) {
-				ReadFile rfi = new ReadFile(f.getAbsolutePath());
-				if(f.length() != 0) rfi.read();
-				if(rfi.getMatrix() != null) csv_files.add(rfi.getMatrix());	
+				ReadWigleWifi rww = new ReadWigleWifi(f.getAbsolutePath());
+				if(f.length() != 0) rww.read();
+				if(rww.getMatrix() != null) csv_files.add(rww.getMatrix());	
 			}
 			else if (f.getName().endsWith(".kml")){
 				kml_files.add(f);
@@ -59,6 +59,4 @@ public class ReadFolder implements Read {
 		this.kml_files = kml_files;
 	}
 	
-	
-
 }

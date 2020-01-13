@@ -3,10 +3,10 @@ package objects;
 public class Wifi {
 
 	String id, mac;
-	int signal, frequency;
+	double signal, frequency;
 	
 	
-	public Wifi(String id, String mac, int frequency, int signal) {
+	public Wifi(String id, String mac, double frequency, double signal) {
 		this.mac = mac;
 		this.id = id;
 		this.signal = signal;
@@ -40,22 +40,22 @@ public class Wifi {
 	}
 
 	
-	public int getSignal() {
+	public double getSignal() {
 		return signal;
 	}
 
 
-	public void setSignal(int signal) {
+	public void setSignal(double signal) {
 		this.signal = signal;
 	}
 
 
-	public int getFrequency() {
+	public double getFrequency() {
 		return frequency;
 	}
 
 
-	public void setFrequency(int frequency) {
+	public void setFrequency(double frequency) {
 		this.frequency = frequency;
 	}
 

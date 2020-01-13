@@ -10,12 +10,11 @@ import org.boehn.kmlframework.kml.Kml;
 import org.boehn.kmlframework.kml.KmlException;
 
 import actions.KmlHelper;
-import objects.SampleScan;
-import objects.Wifi;
+import objects.SampleScanCombo;
 
 public class WriteKml implements Write {
 	
-	private ArrayList<SampleScan> scs;
+	private ArrayList<SampleScanCombo> scs;
 	private final String DOWNLOAD_PATH = "C:/Users/OREL SHALOM/Downloads/";
 	private String name;
 	
@@ -24,7 +23,7 @@ public class WriteKml implements Write {
 	 * @param scs
 	 * @param name
 	 */
-	public WriteKml(ArrayList<SampleScan> scs, String name) {
+	public WriteKml(ArrayList<SampleScanCombo> scs, String name) {
 		super();
 		this.scs = scs;
 		this.name = name + ".kml";
@@ -41,7 +40,7 @@ public class WriteKml implements Write {
 		kh.addIcon("red", doc);
         kh.addIcon("ylw", doc);
         kh.addIcon("grn", doc);
-		for(SampleScan sc : scs){
+		for(SampleScanCombo sc : scs){
 			kh.addPlacemark(sc, doc);
 		}
 		
