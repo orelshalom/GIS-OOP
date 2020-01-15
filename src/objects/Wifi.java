@@ -20,11 +20,12 @@ public class Wifi {
 		this.id = wifi.getId();
 		this.signal = wifi.getSignal();
 		this.frequency = wifi.getFrequency();
+		emptyName();
 	}
 
 
 	private void emptyName() {
-		if(this.id.equals("")) id = "No name";
+		if(this.id.equals("")) this.id = "No name";
 	}
 	
 	

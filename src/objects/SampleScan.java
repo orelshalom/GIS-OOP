@@ -3,6 +3,8 @@ package objects;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.Iterator;
+
 import org.boehn.kmlframework.coordinates.EarthCoordinate;
 import sort.SortBySignal;
 
@@ -37,12 +39,21 @@ public class SampleScan {
 	}
 
 
+	public SampleScan() {}
+
+
 	public ArrayList<Wifi> getStrongerWifisByNum(int num) {
 		wifiArray.sort(new SortBySignal());
 		if (num > wifiNetworks()) return wifiArray;
-		ArrayList<Wifi> arr = new ArrayList<Wifi>();
-		for (int i = 0; i < num; i++) 
-			arr.add(wifiArray.get(i));
+
+		ArrayList<Wifi> arr = new ArrayList<>();
+		ArrayList<String> macs = new ArrayList<>();
+		for(Wifi wf : wifiArray){
+			if(!macs.contains(wf.getMac())){
+				macs.add(wf.getMac());
+				arr.add(wf);}
+		}
+		if(arr.size() > num) arr.subList(num, arr.size()).clear();
 		return arr;
 	}
 
@@ -51,10 +62,16 @@ public class SampleScan {
 	    SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		ArrayList<String> row = new ArrayList<>();
 		row.add(fmt.format(time.getTime())); 
-		row.add(id); 
-		row.add(""+ec.getLatitude()); 
-		row.add(""+ec.getLongitude());
-		row.add(""+ec.getAltitude());
+		row.add(id);
+		if(ec == null){
+			row.add("null"); 
+			row.add("null");
+			row.add("null");
+		} else {
+			row.add(""+ec.getLatitude()); 
+			row.add(""+ec.getLongitude());
+			row.add(""+ec.getAltitude());
+		}
 		row.add(""+wifiNetworks());
 		for(Wifi wf : wifiArray){
 			row.add(wf.getId());

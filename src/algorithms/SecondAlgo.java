@@ -5,16 +5,13 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.Map.Entry;
 
 import org.boehn.kmlframework.coordinates.EarthCoordinate;
 
 import objects.DataAlgo2;
-import objects.MacInfo;
 import objects.SampleScan;
 import objects.Wifi;
 import sort.SortByPi;
-import sort.SortMacsBySignal;
 
 
 public class SecondAlgo {
@@ -59,19 +56,22 @@ public class SecondAlgo {
 	}
 	
 	
-	public ArrayList<SampleScan> toAlgo2Mat() {
+	public ArrayList<SampleScan> toAlgo2Mat(ArrayList<SampleScan> arrTest) {
 		algoMat = new ArrayList<>();
-		for(SampleScan sc : scs)
+		for(SampleScan sc : arrTest)
 			algoMat.add(new SampleScan(sc.getTime(), sc.getId(), algo2(sc, map), sc.getWifiArray()));
+//		for(SampleScan sc : algoMat) System.out.println(sc.toStringCombo());
 		return algoMat;
 	}
 	
 	
 	public EarthCoordinate algo2(SampleScan input, Map<String, ArrayList<SampleScan>> map) {
 		Set<SampleScan> dataset = new HashSet<>();
-		for(Wifi wf : input.getStrongerWifisByNum(NUM_OF_WIFIS))
-			dataset.addAll(map.get(wf.getMac()));
-			
+		for(Wifi wf : input.getStrongerWifisByNum(NUM_OF_WIFIS)){
+			if(map.containsKey(wf.getMac()))
+				dataset.addAll(map.get(wf.getMac()));}
+		
+		if(dataset.size() == 0) return null;
 		ArrayList<DataAlgo2> datalist = new ArrayList<>();
 		for(SampleScan sc : dataset)
 			datalist.add(new DataAlgo2(new SampleScan(sc), calculatePi(input, sc)));
@@ -126,6 +126,16 @@ public class SecondAlgo {
 	
 	public Map<String, ArrayList<SampleScan>> getMap() {
 		return map;
+	}
+
+
+	public ArrayList<SampleScan> getAlgoMat() {
+		return algoMat;
+	}
+
+
+	public void setAlgoMat(ArrayList<SampleScan> algoMat) {
+		this.algoMat = algoMat;
 	}
 
 }

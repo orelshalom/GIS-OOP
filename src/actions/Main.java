@@ -14,6 +14,7 @@ import filter.IDFilter;
 import filter.LocationFilter;
 import filter.TimeFilter;
 import objects.SampleScan;
+import objects.Wifi;
 import read.ReadCombo;
 import read.ReadFolder;
 import write.WriteAlgo1;
@@ -47,19 +48,22 @@ public class Main {
 //		WriteKml wk = new WriteKml("map", FOLDER_PATH, scs);
 //		wk.write();
 //		
-//		FirstAlgo fa = new FirstAlgo(scs);
-//		WriteAlgo1 wa = new WriteAlgo1("Algo1", FOLDER_PATH, fa.toAlgo1Mat());
-//		wa.write();
-//		SecondAlgo sa = new SecondAlgo(scs);
-//		WriteCombo wa2 = new WriteCombo("Algo2", FOLDER_PATH, sa.toAlgo2Mat());
-//		wa2.write();
-
-//		ReadCombo rc = new ReadCombo(FOLDER_PATH+"/combo.csv");
-//		rc.read();
-//		rc.getMatrix();
 		
-		 
-		 
+//		ReadCombo rcInput = new ReadCombo("C:/Users/OREL SHALOM/Desktop/Orel Shalom/אוניברסיטה/קורסים/שנה ב/מונחה עצמים/מטלה 2/testing/_comb_all_BM3_.csv");
+//		rcInput.read();
+//		ReadCombo rcTest = new ReadCombo("C:/Users/OREL SHALOM/Desktop/Orel Shalom/אוניברסיטה/קורסים/שנה ב/מונחה עצמים/מטלה 2/testing/_comb_no_gps_ts1.csv");
+//		rcTest.read();
+		
+//		FirstAlgo fa = new FirstAlgo(rcInput.toArrSamples(MergeFiles.ToArrayList(rcInput.getMatrix())));
+//		WriteAlgo1 wa = new WriteAlgo1("Our_Algo1_BM2_4", FOLDER_PATH, fa.toAlgo1Mat());
+//		wa.write();
+//		WriteAlgo1 wa = new WriteAlgo1("Our_Algo1_BM3_4", FOLDER_PATH, fa.toAlgo1Mat());
+//		wa.write();
+		
+//		SecondAlgo sa = new SecondAlgo(rcInput.toArrSamples(MergeFiles.ToArrayList(rcInput.getMatrix())));
+//		WriteCombo wa2 = new WriteCombo("Our_Algo2_BM3_TS1_4", FOLDER_PATH, sa.toAlgo2Mat(rcTest.toArrSamples(MergeFiles.ToArrayList(rcTest.getMatrix()))));
+//		wa2.write();
+		
 	}
 
 }

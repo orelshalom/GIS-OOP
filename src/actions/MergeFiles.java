@@ -1,9 +1,7 @@
 package actions;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.GregorianCalendar;
 
 import org.boehn.kmlframework.coordinates.EarthCoordinate;
@@ -47,7 +45,7 @@ public class MergeFiles {
 	}
 	
 	
-	private ArrayList<ArrayList<String>> ToArrayList(String[][] mat) {
+	public static ArrayList<ArrayList<String>> ToArrayList(String[][] mat) {
 		ArrayList<ArrayList<String>> tmp = new ArrayList<>();
 		
 		for(int i = 0; i<mat.length; i++){
@@ -65,7 +63,7 @@ public class MergeFiles {
        	device_ids.add(tmp.get(0).get(5).substring(8));
        	tmp.remove(0);
         for(int i = 1; i<tmp.size(); i++){
-        	if(!tmp.get(i).get(10).equals("WIFI") || tmp.get(i).get(3).contains("1970")){
+        	if(!tmp.get(i).get(10).equals("WIFI")){
         		tmp.remove(i);
         		i--;
         	}
@@ -77,7 +75,6 @@ public class MergeFiles {
 		SampleScan sc;
 		ArrayList<Wifi> wifis;
 		GregorianCalendar gc;  
-	    SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	    	    
 		for(int n = 1; n<tmp.size(); n++){
 			wifis = new ArrayList<>();
@@ -95,7 +92,7 @@ public class MergeFiles {
 			}
 			
 			gc = new GregorianCalendar();
-		    gc.setTime(fmt.parse(time));
+		    gc.setTime(ParseDate.stringToDate(time));
 			sc = new SampleScan(gc, device_ids.get(0), 
 					new EarthCoordinate(Double.parseDouble(tmp.get(n).get(7)), 
 							Double.parseDouble(tmp.get(n).get(6)), 

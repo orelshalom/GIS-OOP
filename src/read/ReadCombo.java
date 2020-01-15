@@ -39,6 +39,7 @@ public class ReadCombo extends ReadFile {
 		        	j=0;
 		            while (iterator.hasNext()) {
 		            	String column = iterator.next();
+		            	if(column.equals("?")) column = "-1";
 		            	tmp[i][j] = column;
 		            	j++;
 		            }
@@ -57,12 +58,12 @@ public class ReadCombo extends ReadFile {
 
 	@Override
 	protected boolean goodFormat(List<CSVRecord> records) {
-		if(records.get(0).size() != WriteCombo.getNewheader().length) return false;
-		int i = 0;
-		for(String s : records.get(0)){
-	    	if(!s.equals(WriteCombo.getNewheader()[i])) return false;
-	    	i++;
-	    }
+//		if(records.get(0).size() != WriteCombo.getNewheader().length) return false;
+//		int i = 0;
+//		for(String s : records.get(0)){
+//	    	if(!s.equals(WriteCombo.getNewheader()[i])) return false;
+//	    	i++;
+//	    }
 		return true;
 	}
 
