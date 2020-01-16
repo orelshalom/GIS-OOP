@@ -9,10 +9,10 @@ import org.boehn.kmlframework.kml.Document;
 import org.boehn.kmlframework.kml.Kml;
 import org.boehn.kmlframework.kml.KmlException;
 
-import actions.KmlHelper;
+import tools.KmlHelper;
 import objects.SampleScan;
 
-public class WriteKml extends WriteFile {
+public class WriteKml extends WriteFile { 
 		
 	/**
 	 * @param scs
@@ -29,13 +29,12 @@ public class WriteKml extends WriteFile {
 		Document doc = new Document();
 		kml.setFeature(doc);
 		
-		KmlHelper kh = new KmlHelper();
-		kh.addIcon("red", doc);
-        kh.addIcon("ylw", doc);
-        kh.addIcon("grn", doc);
-		for(SampleScan sc : getMat()){
-			kh.addPlacemark(sc, doc);
-		}
+		KmlHelper.addIcon("red", doc);
+		KmlHelper.addIcon("ylw", doc);
+		KmlHelper.addIcon("grn", doc);
+		for(SampleScan sc : getMat())
+			KmlHelper.addPlacemark(sc, doc);
+		
 		
 		try {
 			PrintWriter pw = new PrintWriter(new File(getFolderPath() ,file_name));

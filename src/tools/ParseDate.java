@@ -1,4 +1,4 @@
-package actions;
+package tools;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,6 +17,7 @@ public class ParseDate {
 		super();
 		this.gc = gc;
 	}
+	
 	
 	public static Date stringToDate(String input) {
 		input = input.replace('/', '-');

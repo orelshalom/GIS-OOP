@@ -9,6 +9,7 @@ import org.boehn.kmlframework.coordinates.EarthCoordinate;
 import objects.SampleScan;
 import objects.Wifi;
 import sort.SortBySignal;
+import tools.ParseDate;
 
 public class MergeFiles {
 
@@ -63,7 +64,7 @@ public class MergeFiles {
        	device_ids.add(tmp.get(0).get(5).substring(8));
        	tmp.remove(0);
         for(int i = 1; i<tmp.size(); i++){
-        	if(!tmp.get(i).get(10).equals("WIFI")){
+        	if(!tmp.get(i).get(10).equals("WIFI") || tmp.get(i).get(3).contains("1970")){
         		tmp.remove(i);
         		i--;
         	}

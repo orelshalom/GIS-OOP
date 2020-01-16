@@ -28,6 +28,7 @@ public class SampleScan {
 		this.id = id;
 		this.ec = ec;
 		this.wifiArray = wifiArray;
+		this.wifiArray.sort(new SortBySignal());
 	}
 
 	

@@ -1,4 +1,4 @@
-package actions;
+package tools;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -18,20 +18,7 @@ import objects.Wifi;
 public class KmlHelper {
 	
 	
-	public void addPlacemark(SampleScan sc, Document doc) {
-		for(Wifi wf : sc.getWifiArray()){
-			Placemark pm = new Placemark(wf.getId());
-			TimeStamp ts = new TimeStamp(changeFormat(sc.getTime()));
-			pm.setLocation(sc.getLocation().getLongitude(), sc.getLocation().getLatitude());
-			pm.setTimePrimitive(ts);
-			pm.setStyleUrl(setColor(wf.getSignal()));
-			pm.setExtendedData(wifiDetails(sc, wf));
-			doc.addFeature(pm);
-		}
-	}
-	
-	
-	public void addIcon(String color, Document doc) {
+	public static void addIcon(String color, Document doc) {
 		Style st = new Style();
 		st.setId(color);
 		IconStyle is = new IconStyle();
@@ -41,19 +28,37 @@ public class KmlHelper {
 		doc.addStyleSelector(st);
 	}
 	
-
-	private String changeFormat(GregorianCalendar gc) {
-	    SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		return fmt.format(gc.getTime());
+	
+	public static void addPlacemark(SampleScan sc, Document doc) {
+		for(Wifi wf : sc.getWifiArray()){
+			Placemark pm = new Placemark(wf.getId());
+			TimeStamp ts = new TimeStamp(changeFormat(sc.getTime()));
+			pm.setTimePrimitive(ts);
+			pm.setExtendedData(wifiDetails(sc, wf));
+			pm.setLocation(sc.getLocation().getLongitude(), sc.getLocation().getLatitude());
+			pm.setStyleUrl(setColor(wf.getSignal()));
+			doc.addFeature(pm);
+		}
 	}
 	
-	private String setColor(double signal) {
+	
+	private static String changeFormat(GregorianCalendar gc) {
+	    SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	    String newFormat = fmt.format(gc.getTime());
+	    newFormat = newFormat.replace(' ', 'T');
+	    System.out.println(newFormat+'Z');
+		return newFormat+'Z';
+	}
+	
+	
+	private static String setColor(double signal) {
 		if(signal > -70) return "#grn";
 		else if (signal > -90) return "#ylw";
 		return "#red";
 	}
 	
-	private ExtendedData wifiDetails(SampleScan sc, Wifi wf) {
+	
+	private static ExtendedData wifiDetails(SampleScan sc, Wifi wf) {
 		ArrayList<SimpleData> details = new ArrayList<>();
 		details.add(new SimpleData("ID", sc.getId()));
 		details.add(new SimpleData("Mac", wf.getMac()));

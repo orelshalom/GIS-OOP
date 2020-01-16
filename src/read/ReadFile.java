@@ -1,7 +1,6 @@
 package read;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -9,7 +8,7 @@ import java.util.List;
 import org.apache.commons.csv.CSVRecord;
 import org.boehn.kmlframework.coordinates.EarthCoordinate;
 
-import actions.ParseDate;
+import tools.ParseDate;
 import objects.SampleScan;
 import objects.Wifi;
 
