@@ -46,7 +46,6 @@ public class KmlHelper {
 	    SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	    String newFormat = fmt.format(gc.getTime());
 	    newFormat = newFormat.replace(' ', 'T');
-	    System.out.println(newFormat+'Z');
 		return newFormat+'Z';
 	}
 	
