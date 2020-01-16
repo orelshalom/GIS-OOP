@@ -12,49 +12,44 @@ import objects.SampleScan;
 import objects.Wifi;
 import sort.SortMacsBySignal;
 
-public class FirstAlgo {
-
-	private static final int NUM_OF_WIFIS = 4;
-	private ArrayList<SampleScan> algoMat;
-	private ArrayList<SampleScan> scs;
-	private Map<String, ArrayList<MacInfo>> macs;
+public class Algorithm1 extends Algo<MacInfo> { 
 	
 		
 	/**
 	 * @param macs
 	 * @param scs
 	 */
-	public FirstAlgo(ArrayList<SampleScan> scs) {
-		super();
-		this.scs = scs;
-		toMacsMap();
+	public Algorithm1(ArrayList<SampleScan> scs) {
+		super(scs);
+		toAlgoMap();
 	}
 
 	
-	private Map<String, ArrayList<MacInfo>> toMacsMap(){
-		macs = new HashMap<>(); 
+	protected Map<String, ArrayList<MacInfo>> toAlgoMap(){
+		map = new HashMap<>(); 
 		for(SampleScan sc : scs) {
 			for(Wifi wf : sc.getWifiArray()){
-				if(!macs.containsKey(wf.getMac())){
+				if(!map.containsKey(wf.getMac())){
 					ArrayList<MacInfo> mis = new ArrayList<>();
 					mis.add(new MacInfo(sc.getTime(), sc.getId(), sc.getLocation(), wf));
-					macs.put(wf.getMac(), mis);
+					map.put(wf.getMac(), mis);
 				}
-				else macs.get(wf.getMac()).add(new MacInfo(sc.getTime(), sc.getId(), sc.getLocation(), wf));
+				else map.get(wf.getMac()).add(new MacInfo(sc.getTime(), sc.getId(), sc.getLocation(), wf));
 			}
 		}
-		return macs;
+		return map;
 	}
 	
 	
-	public ArrayList<SampleScan> toAlgo1Mat() {
+	@Override
+	public ArrayList<SampleScan> toAlgoMat() {
 		algoMat = new ArrayList<>();
 		ArrayList<Wifi> wfs;
 
-		for(Entry<String, ArrayList<MacInfo>> entry : getMacs().entrySet()){
+		for(Entry<String, ArrayList<MacInfo>> entry : map.entrySet()){
 			ArrayList<MacInfo> mi = entry.getValue();
 			mi.sort(new SortMacsBySignal());
-			macs.put(entry.getKey(), mi);
+			map.put(entry.getKey(), mi);
 			
 			wfs = new ArrayList<>();
 			Wifi wf = new Wifi(mi.get(0).getWifi());
@@ -65,8 +60,8 @@ public class FirstAlgo {
 	}
 	
 	
-	public EarthCoordinate algo1(String mac) {
-		ArrayList<MacInfo> mis = getSamples(macs.get(mac));
+	private EarthCoordinate algo1(String mac) {
+		ArrayList<MacInfo> mis = getSamples(map.get(mac));
 		double sumLon = 0.0, sumLat = 0.0, sumAlt = 0.0, sumWeight = 0.0;
 		
 		for(MacInfo mi : mis){
@@ -93,11 +88,6 @@ public class FirstAlgo {
 				mi.getLocation().getLatitude()*weight,
 				mi.getLocation().getAltitude()*weight));
 		return mi;
-	}
-
-
-	public Map<String, ArrayList<MacInfo>> getMacs() {
-		return macs;
 	}
 
 }
