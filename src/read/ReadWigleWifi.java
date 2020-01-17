@@ -12,6 +12,7 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
+
 public class ReadWigleWifi extends ReadFile {
 	
 	private static final int HEADER_SIZE = 8;

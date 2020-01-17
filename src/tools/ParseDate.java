@@ -47,4 +47,26 @@ public class ParseDate {
 		return gc.getTime();
 	}
 	
+	
+	public static String DateTostring(GregorianCalendar gc) {
+		String date = "";
+	    SimpleDateFormat out = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//	    SimpleDateFormat fmt1 = new SimpleDateFormat("dd-MM-yy HH:mm");
+//	    SimpleDateFormat fmt2 = new SimpleDateFormat("dd-MM-yy HH:mm aa");
+//	    SimpleDateFormat fmt3 = new SimpleDateFormat("dd-MM-yy HH:mm:ss");
+	    
+	    try {date = out.format(gc.getTime());}
+	    catch (Exception e) {
+//	    	try {date = fmt1.format(gc.getTime());} 
+//	    	catch (Exception e2) {
+//	    		try {date = fmt2.format(gc.getTime());} 
+//	    		catch (Exception e3) {
+//	    			try {date = fmt3.format(gc.getTime());} 
+//	    			catch (Exception e4) {e4.getStackTrace();}
+//	    		}
+//	    	}
+ 		}
+	    return date;
+	}
+	
 }

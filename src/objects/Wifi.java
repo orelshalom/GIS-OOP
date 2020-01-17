@@ -25,44 +25,36 @@ public class Wifi {
 
 
 	private void emptyName() {
-		if(this.id.equals("")) this.id = "No name";
+		if(id.equals("") || id.contains("?")) id = "No name";
 	}
-	
 	
 	public String getMac() {
 		return mac;
 	}
 
-
 	public void setMac(String mac) {
 		this.mac = mac;
 	}
-
 
 	public String getId() {
 		return id;
 	}
 
-
 	public void setId(String id) {
 		this.id = id;
 	}
 
-	
 	public double getSignal() {
 		return signal;
 	}
-
 
 	public void setSignal(double signal) {
 		this.signal = signal;
 	}
 
-
 	public double getFrequency() {
 		return frequency;
 	}
-
 
 	public void setFrequency(double frequency) {
 		this.frequency = frequency;

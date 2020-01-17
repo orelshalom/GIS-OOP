@@ -38,7 +38,6 @@ public abstract class Algo<T> {
 		this.scs = scs;
 	}
 
-	
 	protected Map<String, ArrayList<T>> getMap() {
 		return map;
 	}

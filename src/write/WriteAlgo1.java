@@ -37,7 +37,7 @@ public class WriteAlgo1 extends WriteFile {
 		    int index = 0;
 			for(SampleScan sc : getMat()){
 				csvPrinter.print(index++);
-				csvPrinter.printRecord(sc.toStringAlgo());
+				csvPrinter.printRecord(sc.toStringAlgo1());
 			}
 			
             csvPrinter.flush();  
