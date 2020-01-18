@@ -1,4 +1,4 @@
-package tools;
+package actions;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -27,20 +27,14 @@ public class ParseDate {
 	    SimpleDateFormat fmt2 = new SimpleDateFormat("dd-MM-yy HH:mm aa");
 	    SimpleDateFormat fmt3 = new SimpleDateFormat("dd-MM-yy HH:mm:ss");
 
-	    try {
-	        gc.setTime(out.parse(input));
-	    } catch (ParseException pe) {
-	        try {
-		        gc.setTime(fmt1.parse(input));
-	        } catch (ParseException pe2) {
-	            try {
-	            	gc.setTime(fmt2.parse(input));
-	            } catch (ParseException pe3) {
-	            	try {
-	    		        gc.setTime(fmt3.parse(input));
-	            	} catch (ParseException pe4) {
-	            		pe3.printStackTrace();
-	            	}
+	    try {gc.setTime(out.parse(input));}
+	    catch (ParseException pe) {
+	        try {gc.setTime(fmt1.parse(input));}
+	        catch (ParseException pe2) {
+	        	try {gc.setTime(fmt2.parse(input));} 
+	        	catch (ParseException pe3) {
+	            	try {gc.setTime(fmt3.parse(input));}
+	            	catch (ParseException pe4) {pe4.getMessage();}
 	            }
 	        }
 	    }
@@ -51,20 +45,20 @@ public class ParseDate {
 	public static String DateTostring(GregorianCalendar gc) {
 		String date = "";
 	    SimpleDateFormat out = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//	    SimpleDateFormat fmt1 = new SimpleDateFormat("dd-MM-yy HH:mm");
-//	    SimpleDateFormat fmt2 = new SimpleDateFormat("dd-MM-yy HH:mm aa");
-//	    SimpleDateFormat fmt3 = new SimpleDateFormat("dd-MM-yy HH:mm:ss");
+	    SimpleDateFormat fmt1 = new SimpleDateFormat("dd-MM-yy HH:mm");
+	    SimpleDateFormat fmt2 = new SimpleDateFormat("dd-MM-yy HH:mm aa");
+	    SimpleDateFormat fmt3 = new SimpleDateFormat("dd-MM-yy HH:mm:ss");
 	    
 	    try {date = out.format(gc.getTime());}
 	    catch (Exception e) {
-//	    	try {date = fmt1.format(gc.getTime());} 
-//	    	catch (Exception e2) {
-//	    		try {date = fmt2.format(gc.getTime());} 
-//	    		catch (Exception e3) {
-//	    			try {date = fmt3.format(gc.getTime());} 
-//	    			catch (Exception e4) {e4.getStackTrace();}
-//	    		}
-//	    	}
+	    	try {date = fmt1.format(gc.getTime());} 
+	    	catch (Exception e2) {
+	    		try {date = fmt2.format(gc.getTime());} 
+	    		catch (Exception e3) {
+	    			try {date = fmt3.format(gc.getTime());} 
+	    			catch (Exception e4) {e4.getMessage();}
+	    		}
+	    	}
  		}
 	    return date;
 	}

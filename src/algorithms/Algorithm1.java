@@ -12,8 +12,8 @@ import objects.SampleScan;
 import objects.Wifi;
 import sort.SortMacsBySignal;
 
+
 public class Algorithm1 extends Algo<MacInfo> { 
-	
 		
 	/**
 	 * @param macs
@@ -25,6 +25,7 @@ public class Algorithm1 extends Algo<MacInfo> {
 	}
 
 	
+	@Override
 	protected Map<String, ArrayList<MacInfo>> toAlgoMap(){
 		map = new HashMap<>(); 
 		for(SampleScan sc : scs) {

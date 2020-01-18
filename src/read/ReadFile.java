@@ -1,8 +1,5 @@
 package read;
 
-import java.util.List;
-import org.apache.commons.csv.CSVRecord;
-
 
 public abstract class ReadFile implements Read {
 
@@ -14,9 +11,6 @@ public abstract class ReadFile implements Read {
 		super();
 		this.file_path = path;
 	}
-
-	
-	protected abstract boolean goodFormat(List<CSVRecord> records); // TODO Format.class
 	
 		
 	public String getFile_path() {

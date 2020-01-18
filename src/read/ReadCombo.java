@@ -12,6 +12,7 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
+import actions.Format;
 import write.WriteCombo;
 
 
@@ -33,7 +34,7 @@ public class ReadCombo extends ReadFile {
 	    	String[][] tmp = new String[records.size()][WriteCombo.getNewheader().length];
 	    	int i = 0, j = 0;
 	    	
-	    	if(goodFormat(records)){
+	    	if(Format.isComboFormat(records)){
 		    	for(CSVRecord re : records) {
 		        	Iterator<String> iterator = re.iterator();
 		        	j=0;
@@ -53,18 +54,6 @@ public class ReadCombo extends ReadFile {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-
-
-	@Override
-	protected boolean goodFormat(List<CSVRecord> records) {
-//		if(records.get(0).size() != WriteCombo.getNewheader().length) return false;
-//		int i = 0;
-//		for(String s : records.get(0)){
-//	    	if(!s.equals(WriteCombo.getNewheader()[i])) return false;
-//	    	i++;
-//	    }
-		return true;
 	}
 
 }

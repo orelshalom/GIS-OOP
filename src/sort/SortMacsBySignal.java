@@ -1,9 +1,7 @@
 package sort;
 
 import java.util.Comparator;
-
 import objects.MacInfo;
-import objects.Wifi;
 
 public class SortMacsBySignal implements Comparator<MacInfo> { 
 	

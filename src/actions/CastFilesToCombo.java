@@ -8,8 +8,6 @@ import org.boehn.kmlframework.coordinates.EarthCoordinate;
 
 import objects.SampleScan;
 import objects.Wifi;
-import tools.Cast;
-import tools.ParseDate;
 
 
 public class CastFilesToCombo extends Cast {

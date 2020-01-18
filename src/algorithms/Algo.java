@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import objects.SampleScan;
 
+
 public abstract class Algo<T> {
 
 	protected static final int NUM_OF_WIFIS = 4;
@@ -19,7 +20,7 @@ public abstract class Algo<T> {
 		
 	protected abstract Map<String, ArrayList<T>> toAlgoMap();
 	
-	protected abstract ArrayList<SampleScan> toAlgoMat();
+	public abstract ArrayList<SampleScan> toAlgoMat();
 
 	
 	public ArrayList<SampleScan> getAlgoMat() {

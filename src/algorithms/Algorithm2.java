@@ -36,6 +36,7 @@ public class Algorithm2 extends Algo<SampleScan> {
 	}
 
 
+	@Override
 	protected Map<String, ArrayList<SampleScan>> toAlgoMap(){
 		map = new HashMap<>(); 
 		for(SampleScan sc : scs) {
@@ -119,8 +120,5 @@ public class Algorithm2 extends Algo<SampleScan> {
 		return data.getSignal() == NO_SIGNAL ? DIFF_NO_SIG 
 				: Math.max(Math.abs(input.getSignal()-data.getSignal()), MIN_DIFF);
 	}
-	
-
-	
 	
 }

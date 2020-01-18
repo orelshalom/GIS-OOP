@@ -9,7 +9,7 @@ import org.boehn.kmlframework.kml.Document;
 import org.boehn.kmlframework.kml.Kml;
 import org.boehn.kmlframework.kml.KmlException;
 
-import tools.KmlHelper;
+import actions.KmlHelper;
 import objects.SampleScan;
 
 public class WriteKml extends WriteFile { 

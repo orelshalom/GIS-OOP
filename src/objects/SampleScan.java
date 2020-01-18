@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 import org.boehn.kmlframework.coordinates.EarthCoordinate;
+
+import actions.ParseDate;
 import sort.SortBySignal;
-import tools.ParseDate;
 
 
 public class SampleScan {

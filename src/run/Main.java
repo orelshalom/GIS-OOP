@@ -1,4 +1,4 @@
-package actions;
+package run;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -7,8 +7,9 @@ import java.util.GregorianCalendar;
 
 import org.boehn.kmlframework.coordinates.EarthCoordinate;
 
-import algorithms.FirstAlgo;
-import algorithms.SecondAlgo;
+import actions.Cast;
+import algorithms.Algorithm1;
+import algorithms.Algorithm2;
 import filter.Filter;
 import filter.IDFilter;
 import filter.LocationFilter;
@@ -29,8 +30,8 @@ public class Main {
 	public static void main(String[] args) throws ParseException {
 //		ReadFolder rfo = new ReadFolder(FOLDER_PATH);
 //		rfo.read();
-//		MergeFiles mer = new MergeFiles(rfo.getCsv_files());
-//		ArrayList<SampleScan> scs = mer.comboMat();
+//		CastFilesToCombo mer = new CastFilesToCombo(rfo.getCsv_files());
+//		ArrayList<SampleScan> scs = mer.toSampleScansCombo();
 //		WriteFile wf = new WriteCombo("combo", FOLDER_PATH, scs);
 //		wf.write();
 //		
@@ -49,19 +50,20 @@ public class Main {
 //		wk.write();
 //		
 		
-//		ReadCombo rcInput = new ReadCombo("C:/Users/OREL SHALOM/Desktop/Orel Shalom/אוניברסיטה/קורסים/שנה ב/מונחה עצמים/מטלה 2/testing/_comb_all_BM3_.csv");
+//		ReadCombo rcInput = new ReadCombo("C:/Users/OREL SHALOM/Downloads/_comb_all_BM3_.csv");
 //		rcInput.read();
-//		ReadCombo rcTest = new ReadCombo("C:/Users/OREL SHALOM/Desktop/Orel Shalom/אוניברסיטה/קורסים/שנה ב/מונחה עצמים/מטלה 2/testing/_comb_no_gps_ts1.csv");
+//		ReadCombo rcTest = new ReadCombo("C:/Users/OREL SHALOM/Downloads/_comb_no_gps_ts1.csv");
 //		rcTest.read();
 		
-//		FirstAlgo fa = new FirstAlgo(rcInput.toArrSamples(MergeFiles.ToArrayList(rcInput.getMatrix())));
-//		WriteAlgo1 wa = new WriteAlgo1("Our_Algo1_BM2_4", FOLDER_PATH, fa.toAlgo1Mat());
+//		Algorithm1 a1 = new Algorithm1(Cast.CombotoSamples(Cast.matToArrayList(rcInput.getMatrix())));
+//		WriteAlgo1 wa = new WriteAlgo1("Our_Algo1_BM2_4", FOLDER_PATH, a1.toAlgoMat());
 //		wa.write();
-//		WriteAlgo1 wa = new WriteAlgo1("Our_Algo1_BM3_4", FOLDER_PATH, fa.toAlgo1Mat());
+//		WriteAlgo1 wa = new WriteAlgo1("Our_Algo1_BM3_4", FOLDER_PATH, a1.toAlgoMat());
 //		wa.write();
-		
-//		SecondAlgo sa = new SecondAlgo(rcInput.toArrSamples(MergeFiles.ToArrayList(rcInput.getMatrix())));
-//		WriteCombo wa2 = new WriteCombo("Our_Algo2_BM3_TS1_4", FOLDER_PATH, sa.toAlgo2Mat(rcTest.toArrSamples(MergeFiles.ToArrayList(rcTest.getMatrix()))));
+
+//		Algorithm2 a2 = new Algorithm2(Cast.CombotoSamples(Cast.matToArrayList(rcInput.getMatrix())),
+//				Cast.CombotoSamples(Cast.matToArrayList(rcTest.getMatrix())));
+//		WriteCombo wa2 = new WriteCombo("Our_Algo2_BM3_TS1_4", FOLDER_PATH, a2.toAlgoMat());
 //		wa2.write();
 		
 	}
