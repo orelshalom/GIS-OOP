@@ -11,6 +11,7 @@ import java.util.Collections;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 
+import actions.OpenFile;
 import objects.SampleScan;
 import sort.SortByTime;
 
@@ -42,7 +43,7 @@ public class WriteCombo extends WriteFile {
 	@Override
 	public void write() {
         try {
-    		BufferedWriter writer = Files.newBufferedWriter(Paths.get(getFolderPath()+ file_name), Charset.defaultCharset());
+    		BufferedWriter writer = Files.newBufferedWriter(Paths.get(getFolderPath() + file_name), Charset.defaultCharset());
 			CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader(getNewheader()));
 			
 			Collections.sort(getMat(), new SortByTime());
@@ -52,6 +53,7 @@ public class WriteCombo extends WriteFile {
 			
             csvPrinter.flush();  
             writer.close();
+//            OpenFile.openFile(getFolderPath() + file_name);
 
 		} catch (IOException e) {
 			e.printStackTrace();

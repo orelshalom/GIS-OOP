@@ -8,6 +8,7 @@ import java.util.GregorianCalendar;
 import org.boehn.kmlframework.coordinates.EarthCoordinate;
 
 import actions.Cast;
+import actions.CastFilesToCombo;
 import algorithms.Algorithm1;
 import algorithms.Algorithm2;
 import filter.Filter;
@@ -34,7 +35,7 @@ public class Main {
 //		ArrayList<SampleScan> scs = mer.toSampleScansCombo();
 //		WriteFile wf = new WriteCombo("combo", FOLDER_PATH, scs);
 //		wf.write();
-//		
+		
 //		Filter f1 = new IDFilter("PKQ1.1302.001");
 //		f1.filter(scs);
 //		EarthCoordinate ec = new EarthCoordinate(34.95398122, 32.08680173, 82.4484252929687);

@@ -10,6 +10,7 @@ import org.boehn.kmlframework.kml.Kml;
 import org.boehn.kmlframework.kml.KmlException;
 
 import actions.KmlHelper;
+import actions.OpenFile;
 import objects.SampleScan;
 
 public class WriteKml extends WriteFile { 
@@ -35,10 +36,11 @@ public class WriteKml extends WriteFile {
 		for(SampleScan sc : getMat())
 			KmlHelper.addPlacemark(sc, doc);
 		
-		
 		try {
 			PrintWriter pw = new PrintWriter(new File(getFolderPath() ,file_name));
 			kml.createKml(pw);
+//			OpenFile.openFile(getFolderPath() +"/"+ file_name);
+			
 		} catch (KmlException | IOException e) {
 			e.printStackTrace();
 		}
