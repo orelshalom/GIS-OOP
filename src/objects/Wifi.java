@@ -25,7 +25,7 @@ public class Wifi {
 
 
 	private void emptyName() {
-		if(id.equals("") || id.contains("?")) id = "No name";
+		if(id != null && (id.equals("") || id.contains("?"))) id = "No name";
 	}
 	
 	public String getMac() {

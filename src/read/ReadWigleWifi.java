@@ -32,7 +32,7 @@ public class ReadWigleWifi extends ReadFile {
 	        List<CSVRecord> records = parser.getRecords();
 	    	String[][] tmp = new String[records.size()][11];
 	    	int i = 0, j = 0;
-	    	
+
 	    	if(Format.isWigleWifiFormat(records)){
 		        for(CSVRecord re : records) {
 		        	Iterator<String> iterator = re.iterator();
@@ -49,8 +49,8 @@ public class ReadWigleWifi extends ReadFile {
 	        parser.close();
 	        reader.close();
 	        
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (IOException | IndexOutOfBoundsException e) {
+			e.getStackTrace();
 		}
     }
 	

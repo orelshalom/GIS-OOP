@@ -7,14 +7,12 @@ public class ReadFolder implements Read {
 
 	private String path;
 	private ArrayList<String[][]> csv_files;
-	private ArrayList<File> kml_files;
 	
 		
 	public ReadFolder(String path) {
 		super();
 		this.path = path;
 		this.csv_files = new ArrayList<>();
-		this.kml_files = new ArrayList<>();
 	}
 
 
@@ -25,11 +23,8 @@ public class ReadFolder implements Read {
 		for ( File f : contents) {
 			if (f.getName().endsWith(".csv")) {
 				ReadWigleWifi rww = new ReadWigleWifi(f.getAbsolutePath());
-				if(f.length() != 0) rww.read();
+				rww.read();
 				if(rww.getMatrix() != null) csv_files.add(rww.getMatrix());	
-			}
-			else if (f.getName().endsWith(".kml")){
-				kml_files.add(f);
 			}
 		}
 	}
@@ -49,14 +44,6 @@ public class ReadFolder implements Read {
 
 	public void setCsv_files(ArrayList<String[][]> csv_files) {
 		this.csv_files = csv_files;
-	}
-
-	public ArrayList<File> getKml_files() {
-		return kml_files;
-	}
-
-	public void setKml_files(ArrayList<File> kml_files) {
-		this.kml_files = kml_files;
 	}
 	
 }

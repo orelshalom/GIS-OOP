@@ -46,8 +46,10 @@ public class SampleScan {
 	
 	
 	private void toTenWifis() {
-		wifiArray.sort(new SortBySignal());
-		if (wifiArray.size() > 10) wifiArray.subList(10, wifiArray.size()).clear();
+		if(wifiArray != null){
+			wifiArray.sort(new SortBySignal());
+			if (wifiArray.size() > 10) wifiArray.subList(10, wifiArray.size()).clear();
+		}
 	}
 	
 	

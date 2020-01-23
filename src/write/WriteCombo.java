@@ -17,7 +17,7 @@ import sort.SortByTime;
 
 public class WriteCombo extends WriteFile {
 
-	private static final String[] newHeader = {"Time", "ID", "Lat", "Lon", "Alt", "#WiFi networks",
+	private static final String[] comboHeader = {"Time", "ID", "Lat", "Lon", "Alt", "#WiFi networks",
 			"SSID1", "MAC1", "Frequncy1", "Signal1",
 			"SSID2", "MAC2", "Frequncy2", "Signal2",
 			"SSID3", "MAC3", "Frequncy3", "Signal3",
@@ -44,7 +44,7 @@ public class WriteCombo extends WriteFile {
 	public void write() {
         try {
     		BufferedWriter writer = Files.newBufferedWriter(Paths.get(getFolderPath() + file_name), Charset.defaultCharset());
-			CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader(getNewheader()));
+			CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader(getComboheader()));
 			
 			Collections.sort(getMat(), new SortByTime());
 			for(SampleScan sc : getMat()){
@@ -62,7 +62,7 @@ public class WriteCombo extends WriteFile {
 	}
 
 
-	public static String[] getNewheader() {
-		return newHeader;
+	public static String[] getComboheader() {
+		return comboHeader;
 	}
 }

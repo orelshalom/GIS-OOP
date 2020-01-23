@@ -29,8 +29,8 @@ public class Main {
 	private static final String FOLDER_PATH = "C:/Users/OREL SHALOM/Downloads";
 
 	public static void main(String[] args) throws ParseException {
-//		ReadFolder rfo = new ReadFolder(FOLDER_PATH);
-//		rfo.read();
+		ReadFolder rfo = new ReadFolder(FOLDER_PATH);
+		rfo.read();
 //		CastFilesToCombo mer = new CastFilesToCombo(rfo.getCsv_files());
 //		ArrayList<SampleScan> scs = mer.toSampleScansCombo();
 //		WriteFile wf = new WriteCombo("combo", FOLDER_PATH, scs);

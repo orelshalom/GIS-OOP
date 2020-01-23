@@ -42,10 +42,10 @@ public class Format {
 
 	
 	public static boolean isComboFormat(List<CSVRecord> records) {
-		if(records.get(0).size() != WriteCombo.getNewheader().length) return false;
+		if(records.get(0).size() != WriteCombo.getComboheader().length) return false;
 		int i = 0;
 		for(String s : records.get(0)){
-	    	if(!s.equals(WriteCombo.getNewheader()[i])) return false;
+	    	if(!s.equals(WriteCombo.getComboheader()[i])) return false;
 	    	i++;
 	    }
 		return true;

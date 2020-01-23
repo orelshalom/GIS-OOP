@@ -31,7 +31,7 @@ public class ReadCombo extends ReadFile {
 			CSVParser parser = new CSVParser(reader, CSVFormat.DEFAULT);
 
 			List<CSVRecord> records = parser.getRecords();
-	    	String[][] tmp = new String[records.size()][WriteCombo.getNewheader().length];
+	    	String[][] tmp = new String[records.size()][WriteCombo.getComboheader().length];
 	    	int i = 0, j = 0;
 	    	
 	    	if(Format.isComboFormat(records)){
