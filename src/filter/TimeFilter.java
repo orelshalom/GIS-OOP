@@ -27,8 +27,8 @@ public class TimeFilter extends Filter {
 		if (scs.size() == 0) throw new IndexOutOfBoundsException("File is empty.");
 		ArrayList<SampleScan> tmp = removeDupMac(scs);
 		tmp.removeIf(sc -> sc.getTime().after(endingTime) || sc.getTime().before(beginningTime));
-		for(SampleScan sc : tmp) System.out.println(sc.toStringCombo());
-		return scs;
+//		for(SampleScan sc : tmp) System.out.println(sc.toStringCombo());
+		return tmp;
 	}
 
 	

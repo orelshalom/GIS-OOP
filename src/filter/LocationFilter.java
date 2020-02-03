@@ -26,10 +26,10 @@ public class LocationFilter extends Filter {
 		if (scs.size() == 0) throw new IndexOutOfBoundsException("File is empty.");
 		ArrayList<SampleScan> tmp = removeDupMac(scs);
 		tmp.removeIf(sc -> sc.getLocation().distanceTo(ec) > radius);
-		for(SampleScan sc : tmp){
-			System.out.println(sc.toStringCombo());
-			System.out.println(sc.getLocation().distanceTo(ec));
-		}
+//		for(SampleScan sc : tmp){
+//			System.out.println(sc.toStringCombo());
+//			System.out.println(sc.getLocation().distanceTo(ec));
+//		}
 		return tmp;
 	}
 
