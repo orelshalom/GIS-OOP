@@ -27,12 +27,6 @@ public class Main {
 //		rfo.read();
 //		CastFilesToCombo mer = new CastFilesToCombo(rfo.getCsv_files());
 //		ArrayList<SampleScan> scs = mer.toSampleScansCombo();
-
-//		WriteFile wf = new WriteCombo("combo", FOLDER_PATH, scs);
-//		wf.write();
-		
-//		WriteKml wk = new WriteKml("map", FOLDER_PATH, scs);
-//		wk.write();
 		
 //		ReadCombo rcInput = new ReadCombo("C:/Users/OREL SHALOM/Downloads/_comb_all_BM3_.csv");
 //		rcInput.read();

@@ -33,7 +33,7 @@ public class Cast {
 		ArrayList<Wifi> wfs;
 		SampleScan sc;
 		
-		for(int i = 0; i<arr.size(); i++){
+		for(int i = 1; i<arr.size(); i++){
 			gc = new GregorianCalendar();
 		    gc.setTime(ParseDate.stringToDate(arr.get(i).get(0)));
 			ec = new EarthCoordinate(Double.parseDouble(arr.get(i).get(3)),

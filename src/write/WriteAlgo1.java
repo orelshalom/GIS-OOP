@@ -40,7 +40,8 @@ public class WriteAlgo1 extends WriteFile {
 				csvPrinter.printRecord(sc.toStringAlgo1());
 			}
 			
-            csvPrinter.flush();  
+            csvPrinter.flush(); 
+            csvPrinter.close();
             writer.close();
 			
 		} catch (IOException e) {

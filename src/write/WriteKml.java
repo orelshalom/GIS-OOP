@@ -15,6 +15,8 @@ import objects.SampleScan;
 
 public class WriteKml extends WriteFile { 
 		
+	private Kml kml;
+	
 	/**
 	 * @param scs
 	 * @param name
@@ -26,7 +28,7 @@ public class WriteKml extends WriteFile {
 	
 	@Override
 	public void write() {
-		Kml kml = new Kml();
+		kml = new Kml();
 		Document doc = new Document();
 		kml.setFeature(doc);
 		
@@ -45,5 +47,17 @@ public class WriteKml extends WriteFile {
 			e.printStackTrace();
 		}
 	}
+
+
+	public Kml getKml() {
+		return kml;
+	}
+
+
+	public void setKml(Kml kml) {
+		this.kml = kml;
+	}
+	
+	
 
 }

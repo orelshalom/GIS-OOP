@@ -51,7 +51,8 @@ public class WriteCombo extends WriteFile {
 				csvPrinter.printRecord(sc.toStringCombo());
 			}
 			
-            csvPrinter.flush();  
+            csvPrinter.flush();
+            csvPrinter.close();
             writer.close();
 //            OpenFile.openFile(getFolderPath() + file_name);
 
